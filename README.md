@@ -150,13 +150,52 @@ type Add = (a: number, b: number) => number;
 const add: Add = (a, b) => a + b;
 ```
 
+### 2-2. Overloading
+
+함수가 여러개의 call signatures를 가지고 있을 때 발생
+
 ```ts
-type Add = (a: number, b: number) => number;
-
-const add: Add = (a, b) => a + b;
-
-//Overloading => 함수가 여러개의 call signatures를 가지고 있을 때 발생
-type Add2 = {
+type Add = {
   (a: number, b: number): number;
+  (a: number, b: string): number; //b = number|string
 };
+
+const add: Add = (a, b) => {
+  if (typeof b === 'string') return a;
+  return a + b;
+};
+```
+
+```ts
+type Config = {
+  path: string;
+  state: object;
+};
+type Push = {
+  (path: string): void;
+  (config: Config): void;
+};
+
+const push: Push = (config) => {
+  if (typeof config === 'string') {
+    console.log(config);
+  } else {
+    console.log(config.path);
+  }
+};
+```
+
+```ts
+type Add = {
+  (a: number, b: number): number;
+  (a: number, b: number, c: number): number; //c는 option
+};
+
+const add: Add = (a, b, c?: number) => {
+  if (c) return a + b + c;
+  return a + b;
+};
+
+add(1, 2); //3
+add(1, 2, 3); //6
 ```
