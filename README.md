@@ -1,6 +1,6 @@
 # TypeScript를 활용한 프로젝트
 
-## 1. TypeScript 문법
+## 1. Overview of TypeScript
 
 ### 1-1. 기초
 
@@ -140,7 +140,7 @@ function hi(name: string | number) {
 
 ---
 
-## 2. Signatures
+## 2. Functions
 
 ### 2-1. Call Signatures
 
@@ -198,4 +198,43 @@ const add: Add = (a, b, c?: number) => {
 
 add(1, 2); //3
 add(1, 2, 3); //6
+```
+
+### 2-3. 다형성(Polymorphism)
+
+- 여러 타입의 결과가 배열로 나오는 경우 사용
+- TypePlaceholder은 보통 T or V로 사용
+
+```ts
+type SuperPrint = {
+  <T>(arr: T[]): T; //
+};
+```
+
+```ts
+type SuperPrint = {
+  <TypePlaceholder>(arr: TypePlaceholder[]): void; //
+};
+
+const superPrint: SuperPrint = (arr) => {
+  arr.forEach((i) => console.log(i));
+};
+
+superPrint([1, 2, 3, 4]);
+superPrint([true, false]);
+superPrint(['1']);
+superPrint(['hi', 1, false]);
+```
+
+```ts
+type SuperPrint = {
+  <TypePlaceholder>(arr: TypePlaceholder[]): TypePlaceholder;
+};
+
+const superPrint: SuperPrint = (arr) => arr[0];
+
+const a = superPrint([1, 2, 3, 4]); //number
+const b = superPrint([true, false]); //boolean
+const c = superPrint(['1']); //string
+const d = superPrint(['hi', 1, false]); //string|number|boolean
 ```
