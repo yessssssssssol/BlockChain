@@ -22,7 +22,7 @@ let g = []; //type any로 설정되며 TypeScript의 보호를 빠져 나옴, �
 type Player = {
   name: string;
   age: number;
-  playerLevel?: number; //number||undefined
+  playerLevel?: number; //number|undefined
 };
 
 const nico: Player = {
@@ -148,4 +148,15 @@ function hi(name: string | number) {
 type Add = (a: number, b: number) => number;
 
 const add: Add = (a, b) => a + b;
+```
+
+```ts
+type Add = (a: number, b: number) => number;
+
+const add: Add = (a, b) => a + b;
+
+//Overloading => 함수가 여러개의 call signatures를 가지고 있을 때 발생
+type Add2 = {
+  (a: number, b: number): number;
+};
 ```
