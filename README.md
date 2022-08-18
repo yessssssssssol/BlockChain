@@ -1,6 +1,8 @@
-## TypeScript를 활용한 프로젝트
+# TypeScript를 활용한 프로젝트
 
-### 1. 기본 설정
+## 1. TypeScript 문법
+
+### 1-1. 기초
 
 ```ts
 let a: number = 1;
@@ -12,7 +14,7 @@ let f: null = null;
 let g = []; //type any로 설정되며 TypeScript의 보호를 빠져 나옴, 사용하지 않는 것이 좋음
 ```
 
-### 2. 변수 설정 (Alias type)
+### 1-2. 변수 설정 (Alias type)
 
 ##### 방법 1
 
@@ -69,7 +71,7 @@ const jack = playerMaker('jack');
 jack.age = 12;
 ```
 
-### 3. readonly 설정
+### 1-3. readonly 설정
 
 ```ts
 type Player = {
@@ -88,7 +90,7 @@ const numbers: readonly number[] = [1, 2, 3, 4];
 numbers.push(1); //error
 ```
 
-### 4. Tuple & readonly 설정
+### 1-4. Tuple & readonly 설정
 
 ```ts
 const player: readonly [string, number, boolean] = ['ys', 10, true];
@@ -96,7 +98,7 @@ player[0] = 1; //string이 아니기 때문에 error
 player[0] = 'nico'; //readonly로 error
 ```
 
-### 5. Unknown, Void, Never
+### 1-5. Unknown, Void, Never
 
 void, unknown, never 순으로 사용 됨(never은 거의 사용 안 함)
 
@@ -134,4 +136,16 @@ function hi(name: string | number) {
     name; //never 하지만, string|number로 타입을 정했기 때문에 올바른 코드가 들어오면 절대 실행되지 않음
   }
 }
+```
+
+---
+
+## 2. Signatures
+
+### 2-1. Call Signatures
+
+```ts
+type Add = (a: number, b: number) => number;
+
+const add: Add = (a, b) => a + b;
 ```
