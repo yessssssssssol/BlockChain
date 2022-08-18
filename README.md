@@ -88,7 +88,7 @@ const numbers: readonly number[] = [1, 2, 3, 4];
 numbers.push(1); //error
 ```
 
-### 4. Tuple, readonly 설정
+### 4. Tuple & readonly 설정
 
 ```ts
 const player: readonly [string, number, boolean] = ['ys', 10, true];
@@ -96,7 +96,9 @@ player[0] = 1; //string이 아니기 때문에 error
 player[0] = 'nico'; //readonly로 error
 ```
 
-## 5. Unknown, Void
+### 5. Unknown, Void, Never
+
+void, unknown, never 순으로 사용 됨(never은 거의 사용 안 함)
 
 ##### unknown 사용법
 
@@ -117,5 +119,19 @@ if (typeof a === 'string') {
 function hello(): void {
   console.log('x');
 }
-//void는 아무것도 return하지 않는 함수, :void는 보통 생략함, '비어있는 상황'
+//void는 아무것도 return하지 않는 함수, :void는 보통 생략함, '비어있는 것'
+```
+
+##### never 사용법
+
+```ts
+function hi(name: string | number) {
+  if (typeof name === 'string') {
+    name; //string
+  } else if (typeof name === 'number') {
+    name; //number
+  } else {
+    name; //never 하지만, string|number로 타입을 정했기 때문에 올바른 코드가 들어오면 절대 실행되지 않음
+  }
+}
 ```
