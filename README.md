@@ -206,9 +206,7 @@ add(1, 2, 3); //6
 - TypePlaceholder은 보통 T or V로 사용
 
 ```ts
-type SuperPrint = {
-  <T>(arr: T[]): T; //
-};
+type SuperPrint = <TypePlaceholder>(arr: TypePlaceholder[]) => TypePlaceholder;
 ```
 
 ```ts
@@ -237,4 +235,19 @@ const a = superPrint([1, 2, 3, 4]); //number
 const b = superPrint([true, false]); //boolean
 const c = superPrint(['1']); //string
 const d = superPrint(['hi', 1, false]); //string|number|boolean
+```
+
+### 2-4. Generics Recap
+
+- Placeholder을 사용해서 작성한 코드의 타입 기준으로 바꿔줌
+- Signature을 생성해줄 수 있는 도구
+
+```ts
+type SuperPrint = <T, M>(a: T[], b: M) => T;
+
+const superPrint: SuperPrint = (arr) => arr[0];
+
+const a = superPrint([1, 2, 3, 4], 'e'); //boolean, string
+const c = superPrint(['1'], 2); //string, number
+const d = superPrint(['hi', 1, false], true); //string|number|boolean, boolean
 ```
