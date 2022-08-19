@@ -251,3 +251,51 @@ const a = superPrint([1, 2, 3, 4], 'e'); //boolean, string
 const c = superPrint(['1'], 2); //string, number
 const d = superPrint(['hi', 1, false], true); //string|number|boolean, boolean
 ```
+
+### 2-5. Conclusions
+
+```ts
+function superPrint<V>(a: V[]) {
+  return a[0];
+}
+
+const a = superPrint<number>([1, 2, 3, 4]); //이러한 방식도 있음
+const c = superPrint(['1']);
+const d = superPrint(['hi', 1, false]);
+```
+
+```ts
+type Player<E> = {
+  name: string;
+  extraInfo: E;
+};
+
+const ys: Player<{ favFood: string }> = {
+  name: 'ys',
+  extraInfo: {
+    favFood: 'sushi',
+  },
+};
+
+type NicoPlayer = Player<{ favFood: string }>;
+const nico: NicoPlayer = {
+  name: 'nico',
+  extraInfo: {
+    favFood: 'sushi',
+  },
+};
+```
+
+```ts
+type A = Array<number>;
+
+let a: A = [1, 2, 3, 4];
+
+function printAllNumbers(arr: Array<number>) {
+  return arr;
+}
+```
+
+```ts
+useState<number>();
+```
