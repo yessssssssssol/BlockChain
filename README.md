@@ -299,3 +299,46 @@ function printAllNumbers(arr: Array<number>) {
 ```ts
 useState<number>();
 ```
+
+---
+
+## 3. Classes
+
+### 3-1. class 사용법
+
+##### 방법1
+
+```ts
+class Player {
+  constructor(
+    private firstName: string,
+    private lastName: string,
+    public nickname: String
+  ) {}
+}
+
+const ys = new Player('park', 'ys', 'hailey');
+
+ys.firstName; //error
+ys.nickname;
+```
+
+##### 방법2 (추상 class) -> 오직 다른곳에서만 상속받을수만 있는 클래스
+
+```ts
+abstract class User {
+  constructor(
+    private firstName: string,
+    private lastName: string,
+    public nickname: String
+  ) {}
+}
+
+class Player extends User {}
+
+const ys = new Player('park', 'ys', 'hailey');
+const ys1 = new User('park', 'ys', 'hailey'); //error
+
+ys.firstName; //error
+ys.nickname;
+```
