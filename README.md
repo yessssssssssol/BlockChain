@@ -364,3 +364,31 @@ const ys = new Player('park', 'ys', 'hailey');
 
 ys.getFullName(); //잘 작동함
 ```
+
+##### protected 사용법
+
+필드가 외부로부터는 보호되지만 다른 자식 클래스에서는 사용되기 원할 때
+
+```ts
+abstract class User {
+  constructor(
+    protected firstName: string,
+    protected lastName: string,
+    protected nickname: String
+  ) {}
+  abstract getNickName(ar: string): void;
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
+class Player extends User {
+  getNickName() {
+    console.log(this.nickname);
+  }
+}
+
+const ys = new Player('park', 'ys', 'hailey');
+
+ys.getFullName();
+```
