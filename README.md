@@ -323,7 +323,10 @@ ys.firstName; //error
 ys.nickname;
 ```
 
-##### 방법2 (추상 class) -> 오직 다른곳에서만 상속받을수만 있는 클래스
+##### 방법2 (abstract method: 추상 메소드)
+
+오직 다른곳에서만 상속받을수만 있는 클래스
+메소드 : 클래스 안에 존재하는 함수
 
 ```ts
 abstract class User {
@@ -337,8 +340,27 @@ abstract class User {
 class Player extends User {}
 
 const ys = new Player('park', 'ys', 'hailey');
-const ys1 = new User('park', 'ys', 'hailey'); //error
+const ys1 = new User('park', 'ys', 'hailey'); //error 직접적인 설계 불가능
 
 ys.firstName; //error
 ys.nickname;
+```
+
+```ts
+abstract class User {
+  constructor(
+    private firstName: string,
+    private lastName: string,
+    public nickname: String
+  ) {}
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
+class Player extends User {}
+
+const ys = new Player('park', 'ys', 'hailey');
+
+ys.getFullName(); //잘 작동함
 ```
