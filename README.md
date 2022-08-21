@@ -365,7 +365,7 @@ const ys = new Player('park', 'ys', 'hailey');
 ys.getFullName(); //잘 작동함
 ```
 
-##### protected 사용법
+##### 방법3 (protected 사용법)
 
 필드가 외부로부터는 보호되지만 다른 자식 클래스에서는 사용되기 원할 때
 
@@ -384,11 +384,34 @@ abstract class User {
 
 class Player extends User {
   getNickName() {
-    console.log(this.nickname);
+    console.log(this.nickname); //private는 접근 불가 error
   }
 }
 
 const ys = new Player('park', 'ys', 'hailey');
 
+ys.getFullName();
+```
+
+코드가 같지만 js는 다르게 보임
+
+```js
+'use strict';
+class User {
+  constructor(firstName, lastName, nickname) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.nickname = nickname;
+  }
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+class Player extends User {
+  getNickName() {
+    console.log(this.nickname);
+  }
+}
+const ys = new Player('park', 'ys', 'hailey');
 ys.getFullName();
 ```
