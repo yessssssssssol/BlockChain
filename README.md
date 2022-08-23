@@ -423,9 +423,16 @@ type Words = {
   [key: string]: string;
   // Words 타입이 number만을 property로 가지는 오브젝트라는 뜻
 };
-// let dict: Words = {
-//   '1': 'food',
-// };
+let dict: Words = {
+  '1': 'food',
+};
+```
+
+```ts
+type Words = {
+  [key: string]: string;
+};
+
 class Dict {
   private words: Words;
   constructor() {
@@ -442,7 +449,10 @@ class Dict {
 }
 
 class Word {
-  constructor(public term: string, public def: string) {}
+  constructor(
+    public readonly term: string, //public이지만 바꿀 수 없게 하는 법
+    public readonly def: string
+  ) {}
 }
 const kimchi = new Word('Kimch', '한국의');
 
