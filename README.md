@@ -456,8 +456,118 @@ class Word {
 }
 const kimchi = new Word('Kimch', '한국의');
 
+kimchi.def = '김치'; //바꿀 수 없음
+
 const dict = new Dict();
 
 dict.add(kimchi);
 dict.def('kimchi');
+```
+
+##### 방법1
+
+```ts
+type Player {
+  nickname : string,
+  healthBar: number
+}
+
+const nico :Player = {
+    nickname : 'nico',
+    healthBar : 10
+    }
+```
+
+##### 방법2
+
+```ts
+type Food = string;
+const kimch: Food = 'delicious';
+```
+
+##### 방법3-1
+
+- typescript에게 object의 모양을 알려주는 방법1
+- interface 보다 활용할 수 있는 점이 많음
+
+```ts
+type Team = 'Red' | 'Blue' | 'Yellow';
+type Player = {
+  nickname: string;
+  team: Team;
+};
+
+type Hello = string; //사용 가능
+
+const nico: Player = {
+  nickname = 'nico',
+  team = 'yellow', // 'pink'적으면 오류 뜸
+};
+```
+
+##### 방법3-2
+
+- typescript에게 object의 모양을 알려주는 방법2
+- 오로지 object의 모양을 typescript에게 설명해 주기 위해서만 사용
+
+```ts
+type Team = 'Red' | 'Blue' | 'Yellow';
+interface Player {
+  nickname: string;
+  team: Team;
+}
+
+interface Hello = string //사용 불가
+
+const nico: Player = {
+  nickname = 'nico',
+  team = 'yellow', // 'pink'적으면 오류 뜸
+};
+```
+
+##### interface VS type
+
+```ts
+//example 1
+interface User {
+  name: string;
+}
+
+interface Player extends User {}
+
+const ys: Player = {
+  name: 'yesol',
+};
+
+// example 2
+type User = {
+  name: string;
+};
+
+type Player = User & {};
+const ys: Player = {
+  name: 'yesol',
+};
+```
+
+##### interface 장점
+
+각각 만들어도 알아서 합쳐줌
+
+```ts
+interface User {
+  nickname: string;
+}
+interface User {
+  lastName: string;
+}
+interface User {
+  health: number;
+}
+
+const ys: User = {
+  nickname = 'yesol',
+  lastName = 'park',
+  health = 10,
+};
 ```
