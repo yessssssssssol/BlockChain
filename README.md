@@ -1,5 +1,7 @@
 # TypeScript를 활용한 프로젝트
 
+프로젝트를 시작하기 전 TypeScript 문법 정리하기.
+
 ## 1. Overview of TypeScript
 
 ### 1-1. 기초
@@ -509,6 +511,8 @@ const nico: Player = {
 
 - typescript에게 object의 모양을 알려주는 방법2
 - 오로지 object의 모양을 typescript에게 설명해 주기 위해서만 사용
+- 객체 지향 프로그래밍의 개념을 활용해서 디자인 됨
+- 각각 작성해도 알아서 모아줌
 
 ```ts
 type Team = 'Red' | 'Blue' | 'Yellow';
@@ -552,7 +556,7 @@ const ys: Player = {
 
 ##### interface 장점
 
-각각 만들어도 알아서 합쳐줌
+각각 만들어도 알아서 합쳐줌(type은 불가능)
 
 ```ts
 interface User {
