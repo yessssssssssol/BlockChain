@@ -418,7 +418,7 @@ const ys = new Player('park', 'ys', 'hailey');
 ys.getFullName();
 ```
 
-### 3-2. Interfaces
+### 3-2. Interfaces 1
 
 ```ts
 type Words = {
@@ -574,4 +574,14 @@ const ys: User = {
   lastName = 'park',
   health = 10,
 };
+```
+
+### 3-2. Interfaces 2
+
+```ts
+abstract class User {
+  constructor(protected firstName: string, protected lastName: string) {}
+  abstract sayHi(name: string): string;
+  abstract fulName(): string;
+}
 ```
